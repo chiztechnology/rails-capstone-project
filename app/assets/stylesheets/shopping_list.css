@@ -1,0 +1,17 @@
+.shopping-list {
+  background-color: #fff;
+  padding: 2rem 10rem 2rem 10rem;
+  text-align: center;
+  min-height: 90vh;
+}
+
+.header-details {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+thead {
+  background-color: rgb(1, 136, 160);
+  color: #fff;
+}

@@ -1,0 +1,30 @@
+.details-page {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 2rem 5rem 0 10rem;
+  min-height: 90vh;
+}
+
+form.button_to {
+  border: none;
+  padding: 0;
+}
+
+th {
+  background-color: rgb(1, 136, 160);
+  color: #fff;
+}
+
+.recipe_detail_name {
+  text-align: center;
+}
+
+.details_buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button_public_class {
+  display: flex;
+}

@@ -1,0 +1,22 @@
+
+<%= form_with model: @recipe, url: recipes_path do |f| %>
+    <h2>New Recipe</h2>
+    
+      <div>
+        <%= f.text_field :name, placeholder: 'Name' %>
+      </div>
+      <div>
+        <%= f.number_field :preparation_time, placeholder: 'Preparation time'%>
+      </div>
+      <div>
+        <%= f.number_field :cooking_time, placeholder: 'Cooking time' %>
+      </div>
+      <div>
+        <%= f.text_area :description, placeholder: 'Description' %>
+      </div>
+      <div>
+        <%= f.submit :submit %>
+      </div>
+<%= link_to 'Back To Recipe', recipes_path %>
+
+<% end %>

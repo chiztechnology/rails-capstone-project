@@ -1,0 +1,26 @@
+.recipe-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single_public_recipe {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.recipe-name {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.recipe-name a {
+  text-decoration: none;
+  color: rgba(1, 90, 105, 0.993);
+}

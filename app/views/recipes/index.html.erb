@@ -1,0 +1,12 @@
+<section class="recipe-page">
+<button><%= link_to 'Add Recipe', new_recipe_path %></button>
+<% @recipes.each do |r| %>
+  <div class="single-recipe">
+    <h2 class="recipe-name"><%= link_to r.name, recipe_path(r.id) %></h2>
+    <p class="recipe-description"><%= r.description%></p>
+    <% if current_user.id == r.user_id %>
+    <%= button_to 'Remove', recipe_path(r.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  </div>
+<% end %>
+</section>

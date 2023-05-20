@@ -1,0 +1,15 @@
+<div class="create-container">
+  <%= form_with model: @food, url: foods_path, method: :post do |f|%>
+<h1>Create New Food</h1>
+
+  <%= f.text_field :name, placeholder: 'Name' %>
+  <br>
+  <%= f.text_field :measurement_unit, placeholder: 'Measurement Unit' %>
+  <br>
+  <%= f.text_field :price, placeholder: 'Price' %> 
+  <br>
+  <%= f.text_field :quantity, placeholder: 'Quantity' %>
+  <br>
+  <%= f.submit 'Create Food'%>  
+  <%end%>
+</div>

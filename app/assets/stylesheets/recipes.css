@@ -1,0 +1,46 @@
+.recipe-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single-recipe {
+  display: flex;
+  gap: 1.5rem;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.recipe-name {
+  font-size: 24px;
+  margin-bottom: 10px;
+  width: 40%;
+}
+
+.recipe-name a {
+  text-decoration: none;
+  color: rgba(1, 90, 105, 0.993);
+}
+
+.recipe-description {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  width: 40%;
+}
+
+.confirm {
+  color: #dc3545;
+}
+
+.confirm:hover {
+  color: #bd2130;
+}
+
+form.button_to {
+  border: none;
+}

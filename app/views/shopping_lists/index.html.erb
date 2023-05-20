@@ -1,0 +1,36 @@
+<head>
+  <title>Recipe App</title>
+  <%= stylesheet_link_tag 'shopping_list' %>
+</head>
+
+<section class="shopping-list">
+    <h1 >Shopping List</h1>
+
+    <div class="header-details">
+        <p>Amount of food items to buy: <%= @total_missing_count %> </p>
+        <p>Total value of food needed: $<%= @total_missing_price %> </p>
+    </div>
+  
+    <%if @missing_foods.empty?%>
+        <p> No Shopping List </p>
+    <% else %>
+        <div class="">
+            <table>
+                <thead>
+                    <td>Food</td>
+                    <td>Quantity</td>
+                    <td>Price</td>
+                </thead>
+                <% @missing_foods.each do |food|%>
+                    <tr>
+                        <td><%=food.food.name%></td>
+                        <td><%= food.food.quantity - food.quantity %> <%= food.food.measurement_unit%></td>
+                        <td>$ <%=food.food.price * (food.food.quantity - food.quantity) %></td>
+                    </tr>
+                <%end%>
+            </table>
+        </div>
+    <% end %>
+</section>
+
+
