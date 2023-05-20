@@ -1,0 +1,35 @@
+<div class ="container">
+<h1 class="display-5 text-center">Shopping List</h1>
+<div class="d-flex justify-content-evenly mt-3">
+    <% total_count = 0 %>
+    <% @shopping_list.each do |food, details| %>
+      <% total_count += 1 %>
+    <% end %>
+    <p class="fw-bold">Amount of food items to buy: <%= total_count %></p>
+    <% total_price = 0 %>
+    <% @shopping_list.each do |food, details| %>
+      <% total_price += details[:price] %>
+    <% end %>
+    <p class="fw-bold">Total value of food needed: <%= number_to_currency(total_price) %></p>
+</div>
+<table class="table table-striped table-hover table-border border border-3 mt-3">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% total_price = 0 %>
+    <% @shopping_list.each do |food, details| %>
+      <% total_price += details[:price] * details[:quantity] %>
+      <tr>
+        <td><%= food %></td>
+        <td><%= details[:quantity] %></td>
+        <td><%= number_to_currency(details[:price]) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

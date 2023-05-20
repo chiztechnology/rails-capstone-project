@@ -1,0 +1,29 @@
+<div class="container p-5">
+  <h2 class="display-5">Add Food</h2>
+
+  <%= form_with(model: @food, url: foods_path, local: true, html: { class: "row g-3" }) do |form| %>
+    <div class="col-md-12">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", required: true %>
+    </div>
+
+    <div class="col-md-12">
+      <%= form.label :measurement_unit, class: "form-label" %>
+      <%= form.select :measurement_unit, options_for_select(['lbs', 'kgs'], selected: 'lbs'), class: "form-select", required: true %>
+    </div>
+
+    <div class="col-md-12">
+      <%= form.label :price, "Price ($)", class: "form-label" %>
+      <%= form.number_field :price, class: "form-control", required: true %>
+    </div>
+
+    <div class="col-md-12">
+      <%= form.label :quantity, class: "form-label" %>
+      <%= form.number_field :quantity, class: "form-control", required: true %>
+    </div>
+
+    <div class="col-12">
+      <%= form.submit "Add Food", class: "btn btn-success", style: "width: 100%" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="display-5 text-center"><strong><%=@recipe.name%></strong></h1>
+      <div class="row justify-content-between mb-4">
+        <div class="col-md-6">
+          <h2>Preparation time: <%=@recipe.preparation_time%> min</h2>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check form-switch mt-2">
+            <div class="form-check">
+              <%= form_tag toggle_public_recipe_path(@recipe), method: :put, class: 'd-inline' do %>
+                <%= hidden_field_tag :public, 0 %>
+                <%= check_box_tag "public", "1", @recipe.public, class: "form-check-input", data: { "role": "switch" }, onchange: "this.form.submit();" %>
+              <% end %>
+              <%= label_tag "public", "Public", class: "form-check-label" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="mb-4">Cooking time: <%=@recipe.cooking_time%> min</h2>
+      <h2 class="mb-4">Description: <%=@recipe.description%></h2>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
+        <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe), class: "btn btn-success me-md-2 mb-3 mb-md-0" %>
+        <%= link_to "Generate Shopping List", recipe_shopping_list_path(@recipe), class: "btn btn-success" %>
+      </div>
+      <%= render partial: "recipe_foods/recipe_foods", locals: { recipe: @recipe } %>
+    </div>
+  </div>
+</div>
+
