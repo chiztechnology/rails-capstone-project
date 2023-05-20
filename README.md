@@ -133,6 +133,11 @@ To run the integration tests:
 
 ## 👥 Author <a name="authors"></a>
 
+👤 **Israel CHIZUNGU**
+
+- GitHub: [chiztechnology](https://github.com/chiztechnology)
+- Twitter: [IsraelChizungu](https://twitter.com/IsraelChizungu)
+- LinkedIn: [IsraelChizungu](https://www.linkedin.com/in/israelchizungu/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
