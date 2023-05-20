@@ -58,7 +58,7 @@ class RecipesController < ApplicationController
   end
 
   def generate_shopping_list(recipe)
-    recipe_foods = RecipeFood.where(recipe:)
+    recipe_foods = RecipeFood.where(recipe)
 
     shopping_list = {}
     total_items = 0
@@ -71,7 +71,7 @@ class RecipesController < ApplicationController
 
       if shopping_list[food.name].nil?
         shopping_list[food.name] =
-          { quantity:, measurement_unit:, price: food.price, name: food.name }
+          { quantity: measurement_unit, price: food.price, name: food.name }
       else
         shopping_list[food.name][:quantity] += quantity
         shopping_list[food.name][:price] += food.price
