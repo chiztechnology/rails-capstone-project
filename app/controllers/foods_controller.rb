@@ -1,40 +1,39 @@
 class FoodsController < ApplicationController
-  # GET /foods
   def index
-    @foods = Food.all
+    @foods = current_user.foods.all
   end
 
-  # GET /foods/1
-  def show
-    @food = Food.find(params[:id])
-  end
-
-  # GET /foods/new
   def new
     @food = Food.new
   end
 
   def create
-    @food = current_user.foods.new(food_params)
-    respond_to do |f|
-      if @food.save
-        f.html { redirect_to my_foods_path, notice: 'Food was successfully added' }
-      else
-        f.html { render :new }
+    @food = Food.create(food_params.merge(user_id: current_user.id))
+
+    respond_to do |format|
+      format.html do
+        if @food.save
+          redirect_to foods_path
+        else
+          redirect_to new_food_path
+        end
       end
     end
   end
 
   def destroy
-    @food = Food.find(params[:id]).destroy
-    respond_to do |f|
-      f.html { redirect_to my_foods_path, notice: 'Food was successfully removed' }
+    @food = Food.find(params[:id])
+
+    if @food.destroy
+      flash[:notice] = 'Food deleted successfully.'
+    else
+      flash[:alert] = 'Failed to delete food.'
     end
+
+    redirect_to foods_path
   end
 
-  def my_foods
-    @foods = current_user.foods.includes(:user)
-  end
+  private
 
   def food_params
     params.require(:food).permit(:name, :measurement_unit, :price, :quantity)

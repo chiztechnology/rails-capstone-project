@@ -1,65 +1,36 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  before(:each) do
-    @user = User.create(name: 'francisco', email: 'francisco@gmail.com', encrypted_password: '123456')
-    @food = Food.new(name: 'mango', measurement_unit: 'lbs', price: 1, quantity: 5, user: @user)
-    @recipe = Recipe.new(user: @user, name: 'Lasagna', description: 'Steps to make great Lasagna',
-                         preparation_time: 60, cooking_time: 45, public: true)
-    @recipe_food = RecipeFood.new(quantity: 1, recipe: @recipe, food: @food)
-  end
+  let(:user) { FactoryBot.create(:user) }
 
-  context 'Validation tests' do
-    it 'Validation should be successful' do
-      expect(@recipe).to be_valid
+  describe 'validations' do
+    it 'is valid with a name, preparation time, cooking time, and user_id' do
+      recipe = Recipe.new(name: 'Test Recipe', preparation_time: 10, cooking_time: 20, description: 'tomato and pasta',
+                          user_id: user.id)
+      expect(recipe).to be_valid
     end
 
-    it 'Recipe should have a name' do
-      expect(@recipe.name).to be_present
+    it 'is invalid without a name' do
+      recipe = Recipe.new(name: nil, preparation_time: 10, cooking_time: 20, user_id: user.id)
+      expect(recipe).to_not be_valid
+      expect(recipe.errors[:name]).to include("can't be blank")
     end
 
-    it 'Recipe should have a description' do
-      expect(@recipe.description).to be_present
+    it 'is invalid with a negative preparation time' do
+      recipe = Recipe.new(name: 'Test Recipe', preparation_time: -10, cooking_time: 20, user_id: user.id)
+      expect(recipe).to_not be_valid
+      expect(recipe.errors[:preparation_time]).to include('must be greater than or equal to 0')
     end
 
-    it 'Recipe should have a preparation time' do
-      expect(@recipe.preparation_time).to be >= 0
+    it 'is invalid with a negative cooking time' do
+      recipe = Recipe.new(name: 'Test Recipe', preparation_time: 10, cooking_time: -20, user_id: user.id)
+      expect(recipe).to_not be_valid
+      expect(recipe.errors[:cooking_time]).to include('must be greater than or equal to 0')
     end
 
-    it 'Recipe should have a cooking time' do
-      expect(@recipe.cooking_time).to be >= 0
-    end
-
-    it 'Recipe preparation time should be numeric' do
-      expect(@recipe.preparation_time).to be_a_kind_of(Numeric)
-    end
-
-    it 'Recipe public should be boolean' do
-      expect(@recipe.public).to be_a(TrueClass).or be_a(FalseClass)
-    end
-
-    it 'Recipe cooking time should be numeric' do
-      expect(@recipe.cooking_time).to be_a_kind_of(Numeric)
-    end
-
-    it 'Should have a valid quantity' do
-      expect(@recipe.description).to eq('Steps to make great Lasagna')
-    end
-
-    it 'Recipe should have a user' do
-      expect(@recipe.user).to be_present
-    end
-  end
-
-  context 'Association tests' do
-    it 'Recipe should belong to a user' do
-      @recipe = Recipe.reflect_on_association(:user)
-      expect(@recipe.macro).to eq(:belongs_to)
-    end
-
-    it 'Recipe should have many recipes' do
-      @recipe = Recipe.reflect_on_association(:recipe_foods)
-      expect(@recipe.macro).to eq(:has_many)
+    it 'is invalid without a user_id' do
+      recipe = Recipe.new(name: 'Test Recipe', preparation_time: 10, cooking_time: 20, user_id: nil)
+      expect(recipe).to_not be_valid
     end
   end
 end

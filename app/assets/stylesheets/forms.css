@@ -1,0 +1,16 @@
+input#recipe_name,
+input#recipe_preparation_time,
+input#recipe_cooking_time,
+textarea#recipe_description,
+input#food_measurement_unit,
+input#food_price,
+input#food_quantity,
+input#food_name {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}

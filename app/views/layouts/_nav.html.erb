@@ -1,0 +1,45 @@
+<head>
+  <title>Recipe App</title>
+  <%= stylesheet_link_tag 'navbar' %>
+</head>
+<body>
+<ul class="nav-bar">
+<section class="nav1">
+<% if user_signed_in? %>
+<li class="nav-title">
+  <h2 class="title">
+    <%= "#{current_user.name}" %>
+  </h2>
+</li>
+<% else %>
+<li class="nav-title">
+  <h2 class="title">
+  Recipe App
+  </h2>
+</li>
+<% end %>
+</section>
+<section class="nav2">
+
+<% if user_signed_in? %>
+
+<li class="nav-item">
+  <%= link_to 'Food List', foods_path, class: "nav-link" %> 
+</li>
+<li class="nav-item">
+  <%= link_to 'Recipe List', recipes_path, class: "nav-link" %> 
+</li>
+<li class="nav-item">
+  <%= link_to 'Public Recipe List', public_recipes_path, class: "nav-link" %> 
+</li>
+<li class="nav-item">
+  <%= link_to 'General Shopping List', shopping_lists_path, class: "nav-link" %> 
+</li>
+
+<li class="nav-item">
+  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+</li>
+<% end %>
+</section>
+</ul>
+</body>

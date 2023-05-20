@@ -1,0 +1,35 @@
+<head>
+  <title>Recipe App</title>
+  <%= stylesheet_link_tag 'foods' %>
+</head>
+
+<section class="section">
+  <button><%= link_to 'Create Food', "foods/new" %></button>
+
+  <%if @foods.empty?%>
+    <p>No Food Added</p>
+  <% else %>
+    <div class="table">
+      <table class="table">
+        <thead>
+          <td> Food</td>
+          <td> Measurement Unit</td>
+          <td> Unit price</td>
+          <td> Action</td>
+        </thead>
+        <% @foods.each do |food| %>
+          <tr>
+            <td> <%= food.name %> </td>
+            <td> <%= food.measurement_unit %> </td>
+            <td> $<%= food.price %></td>
+            <% if current_user.id == food.user_id %>
+              <td> <%= button_to 'Delete', food, method: :delete %> </td>
+            <% else %>
+              <td> No Action </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+</section>

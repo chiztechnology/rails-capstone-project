@@ -13,13 +13,33 @@
  *= require_tree .
  *= require_self
  */
-
-* {
-  scroll-behavior: smooth;
-  cursor: pointer;
-  font-family: Arial, Helvetica, sans-serif;
+body {
+  background-color: rgb(1, 136, 160);
 }
 
-body {
-  width: 100%;
+.public_recipe {
+  display: flex;
+  justify-content: space-between;
+}
+
+.toggle {
+  display: flex;
+}
+
+.btn {
+  background-color: #fff;
+  border: none;
+}
+
+.btn-on {
+  color: #008000;
+}
+
+.btn-off {
+  color: red;
+}
+
+.btn-on,
+.btn-off {
+  font-size: 30px;
 }

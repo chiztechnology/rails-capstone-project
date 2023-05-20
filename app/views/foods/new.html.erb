@@ -1,29 +1,15 @@
-<div class="container p-5">
-  <h2 class="display-5">Add Food</h2>
+<div class="create-container">
+  <%= form_with model: @food, url: foods_path, method: :post do |f|%>
+<h1>Create New Food</h1>
 
-  <%= form_with(model: @food, url: foods_path, local: true, html: { class: "row g-3" }) do |form| %>
-    <div class="col-md-12">
-      <%= form.label :name, class: "form-label" %>
-      <%= form.text_field :name, class: "form-control", required: true %>
-    </div>
-
-    <div class="col-md-12">
-      <%= form.label :measurement_unit, class: "form-label" %>
-      <%= form.select :measurement_unit, options_for_select(['lbs', 'kgs'], selected: 'lbs'), class: "form-select", required: true %>
-    </div>
-
-    <div class="col-md-12">
-      <%= form.label :price, "Price ($)", class: "form-label" %>
-      <%= form.number_field :price, class: "form-control", required: true %>
-    </div>
-
-    <div class="col-md-12">
-      <%= form.label :quantity, class: "form-label" %>
-      <%= form.number_field :quantity, class: "form-control", required: true %>
-    </div>
-
-    <div class="col-12">
-      <%= form.submit "Add Food", class: "btn btn-primary", style: "width: 100%" %>
-    </div>
-  <% end %>
+  <%= f.text_field :name, placeholder: 'Name' %>
+  <br>
+  <%= f.text_field :measurement_unit, placeholder: 'Measurement Unit' %>
+  <br>
+  <%= f.text_field :price, placeholder: 'Price' %> 
+  <br>
+  <%= f.text_field :quantity, placeholder: 'Quantity' %>
+  <br>
+  <%= f.submit 'Create Food'%>  
+  <%end%>
 </div>

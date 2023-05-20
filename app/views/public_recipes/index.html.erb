@@ -1,0 +1,22 @@
+<head>
+  <title>Recipe App</title>
+  <%= stylesheet_link_tag 'public_recipes' %>
+</head>
+
+<section class="section">
+<% @recipes.each do |recipe| %>
+
+    <div class="single_public_recipe">
+            <div class="section1">
+            <h2 class="recipe-name"><%= link_to recipe.name, recipe_path(recipe.id)%></h2>
+            <p>By: <%= recipe.user.name%></p>
+            </div>
+            <div class="section2">
+            <p>Total food items: <%=recipe.recipe_foods.count%></p>
+            <p>Total price: $<%= recipe.recipe_foods.sum { |recipefood| recipefood.food.price * recipefood.quantity } %></p>
+            </div>
+            
+    </div>
+    <% end %>
+
+</section>

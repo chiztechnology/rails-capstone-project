@@ -1,35 +1,36 @@
-<div class ="container">
-<h1 class="display-5 text-center">Shopping List</h1>
-<div class="d-flex justify-content-evenly mt-3">
-    <% total_count = 0 %>
-    <% @shopping_list.each do |food, details| %>
-      <% total_count += 1 %>
+<head>
+  <title>Recipe App</title>
+  <%= stylesheet_link_tag 'shopping_list' %>
+</head>
+
+<section class="shopping-list">
+    <h1 >Shopping List</h1>
+
+    <div class="header-details">
+        <p>Amount of food items to buy: <%= @total_missing_count %> </p>
+        <p>Total value of food needed: $<%= @total_missing_price %> </p>
+    </div>
+  
+    <%if @missing_foods.empty?%>
+        <p> No Shopping List </p>
+    <% else %>
+        <div class="">
+            <table>
+                <thead>
+                    <td>Food</td>
+                    <td>Quantity</td>
+                    <td>Price</td>
+                </thead>
+                <% @missing_foods.each do |food|%>
+                    <tr>
+                        <td><%=food.food.name%></td>
+                        <td><%= food.food.quantity - food.quantity %> <%= food.food.measurement_unit%></td>
+                        <td>$ <%=food.food.price * (food.food.quantity - food.quantity) %></td>
+                    </tr>
+                <%end%>
+            </table>
+        </div>
     <% end %>
-    <p class="fw-bold">Amount of food items to buy: <%= total_count %></p>
-    <% total_price = 0 %>
-    <% @shopping_list.each do |food, details| %>
-      <% total_price += details[:price] %>
-    <% end %>
-    <p class="fw-bold">Total value of food needed: <%= number_to_currency(total_price) %></p>
-</div>
-<table class="table table-striped table-hover table-border border border-3 mt-3">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% total_price = 0 %>
-    <% @shopping_list.each do |food, details| %>
-      <% total_price += details[:price] * details[:quantity] %>
-      <tr>
-        <td><%= food %></td>
-        <td><%= details[:quantity] %></td>
-        <td><%= number_to_currency(details[:price]) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
+</section>
+
+

@@ -7,52 +7,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://kit.fontawesome.com/b89d57aeef.js" crossorigin="anonymous"></script>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-default">
-    <div class="container">
-      <a class="navbar-brand" href="#">Recipe App</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto navbar-expand justify-content-evenly">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <a class="nav-link" href="<%= public_recipes_path %>">Public Recipes</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                My Account
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="<%= my_recipes_path %>">My Recipes</a>
-                <a class="dropdown-item" href="<%= my_foods_path %>">My Foods</a>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-        <% if user_signed_in? %>
-          <span class="navbar-text me-3">
-            Signed in as <strong><%= current_user.name %></strong>
-          </span>
-          <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-light my-2 my-sm-0' %>
-        <% else %>
-          <%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline-light my-2 my-sm-0 me-3' %>
-          <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-outline-light my-2 my-sm-0' %>
-        <% end %>
-      </div>
-      </div>
-    </nav>
-    <p class="notice ms-3 mt-3"><%= notice %></p>
-    <p class="alert ms-3 mt-3"><%= alert %></p>
+    <%= render 'layouts/nav' %>
     <%= yield %>
-    <footer class="fixed-bottom bottom-0 d-flex justify-content-center align-items-center py-3 m-0 bg-default text-center">
-      <div class="col-12">
-        <span class="text-light">Copyright © <%= Time.now.year %> <a target="_blank" href="https://github.com/chiztechnology">Israel CHIZUNGU</a></span>
-      </div>
-    </footer>
   </body>
 </html>

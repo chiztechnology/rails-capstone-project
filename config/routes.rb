@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, path: '', path_names: {
+    sign_in: 'login', sign_out: 'logout',
+    password: 'secret', confirmation: 'verification',
+    registration: 'register', edit: 'edit/profile'
+  }, sign_out_via: [:get, :post]
+
+  resources :recipes, only: [:index, :new, :show, :update, :create, :destroy] do
+    resources :recipe_foods, only:[:index, :new, :create, :edit, :destroy]
+  end
+  resources :users
+  resources :foods, only: [:index, :show, :new, :edit,:create, :destroy]
+  resources :public_recipes, only: [:index]
+  resources :shopping_lists, only: [:index]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
   # Defines the root path route ("/")
-  #  root "users#index"
-  root "recipes#my_recipes"
-  get 'public-recipes', to: 'recipes#public_recipes'
-  get 'my-recipes', to: 'recipes#my_recipes'
-  get 'my-foods', to: 'foods#my_foods'
-  put '/recipes/:id/toggle_public', to: 'recipes#toggle_public', as: 'toggle_public_recipe'
-  get '/recipes/:id/shopping_list', to: 'recipes#shopping_list', as: 'recipe_shopping_list'
-
-
-  resources :recipes do
-    resources :recipe_foods
-  end  
-  resources :foods
+  root "foods#index"
 end
