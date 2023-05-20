@@ -21,8 +21,8 @@
       <h2 class="mb-4">Cooking time: <%=@recipe.cooking_time%> min</h2>
       <h2 class="mb-4">Description: <%=@recipe.description%></h2>
       <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
-        <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe), class: "btn btn-success me-md-2 mb-3 mb-md-0" %>
-        <%= link_to "Generate Shopping List", recipe_shopping_list_path(@recipe), class: "btn btn-success" %>
+        <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe), class: "btn btn-primary me-md-2 mb-3 mb-md-0" %>
+        <%= link_to "Generate Shopping List", recipe_shopping_list_path(@recipe), class: "btn btn-primary" %>
       </div>
       <%= render partial: "recipe_foods/recipe_foods", locals: { recipe: @recipe } %>
     </div>

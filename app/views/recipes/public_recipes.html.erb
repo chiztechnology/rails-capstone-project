@@ -4,7 +4,7 @@
   <ul class="list-group">
     <% @recipes.each do |recipe| %>
     <% shopping_list, total_items, total_price = @shopping_lists[recipe.id] %>
-      <li class="list-group-item d-flex justify-content-evenly rounded border border-3 border-success">
+      <li class="list-group-item d-flex justify-content-evenly rounded border border-3 border-primary">
         <div class="col-6">
           <%= link_to recipe.name, recipe_path(recipe.id), class: "text-decoration-none text-dark fw-bold me-3 text-center" %>
           <p class="mb-0">By: <%= recipe.user.name %></p>
